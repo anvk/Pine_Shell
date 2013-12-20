@@ -1,0 +1,29 @@
+{
+  "name": "PineGate",
+  "version": "0.1.0",
+  "description": "Project based on Pine.js RESTful webservice which allows to execute shell commands on a server",
+  "contributors": [
+    {
+      "name": "Alexey Novak",
+      "email": "alexey.novak.mail@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@10.151.2.35:node-js/opengate.git"
+  },
+  "keywords": [
+    "opensips",
+    "node",
+    "scripts",
+    "webservice"
+  ],
+  "dependencies": {
+    "lodash-node": "2.3.x",
+    "express":  "3.4.x",
+    "node.extend": "1.0.x"
+  },
+  "engine": "node >= 0.10.x",
+  "main": "main",
+  "license": "MIT"
+}
