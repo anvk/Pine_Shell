@@ -7,19 +7,73 @@ Pine.js + Server Shell Scripts
 ### Prerequisites
 
 Node + NPM
-Install required packages
 
 ```
 $ npm install
 ```
 
-### To start webservice
+### Example of pine + shell
 
 ```
 $ node main
 ```
 
-Navigate to http://localhost:3000
+Navigate to [http://localhost:3000](http://localhost:3000) to see your running web service
+
+### Options
+
+Same as [Pine.js options](https://github.com/anvk/Pine#options)
+
+**routes** - array of route objects. Please refer to the documentation below for further details.  
+**port** - port where for the web service  
+**verbose** - there will extra logging messages printed if true  
+**processRequest** - callback which will be executed for every web service request. Please refer to the documentation below for further details.  
+
+#### Route object
+
+> Object which sets route rules(URLs) for the web service. Its properties are described below. NOTE: extra properties could be specified and accessed through _params.route_ in _proccessRequest()_ callback
+
+**url** - url for a route  
+**method** - GET/POST/PUT/PATCH/DELETE. NOTE: by default method will be set to GET for a route  
+**shellCommand** - shell command which is executed on the server when client requests a route. NOTE: you can match _{{argument}}_ to a value in argMap. Please refer to the documentation below for further details.  
+**argMap** - an object which contains mapping for arguments which were passed in URL, Body or Query URL.  
+
+#### Route example
+
+If you need to process _GET http://localhost:3000/echo/HelloUser_ to execute _$ echo HelloUser_ then your route object will be the following:
+
+```javascript
+{
+  url: '/echo/:message',
+  shellCommand: 'echo {{message}}',
+  argMap: {
+    message: 'params.message'
+}
+```
+
+#### processRequest(params)
+
+Same as [Pine.js processRequest()](https://github.com/anvk/Pine#processrequestparams)
+
+> Callback for every route which got executed. Params consist of the following objects:
+
+**args** - object which contains resolved variables from route's argMap  
+**res** - Express response object. NOTE: you need to call _res.send(data)_ within your _processRequest()_ callback to send JSON back to a client.  
+**req** - Express request object.  
+**route** - Route object which got executed. NOTE: all extra properties will be in this object  
+
+### Widget default options
+
+Same as [Pine.js default options](https://github.com/anvk/Pine#widget-default-options)
+
+```javascript
+var defaults = {
+  routes: [],
+  port: 3000,
+  verbose: false,
+  processRequest: undefined
+};
+```
 
 ## License
 The MIT License (MIT)
