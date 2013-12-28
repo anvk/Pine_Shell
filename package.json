@@ -1,7 +1,7 @@
 {
   "name": "Pine_Shell",
   "version": "0.2.0",
-  "description": "Project based on Pine.js RESTful webservice which allows to execute shell commands on a server",
+  "description": "Project based on PineJS. RESTful webservice which allows to execute shell commands on a server.",
   "contributors": [
     {
       "name": "Alexey Novak",
